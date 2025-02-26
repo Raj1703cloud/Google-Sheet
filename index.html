@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Web Sheets</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Menu Bar -->
+        <div class="menu-bar">
+            <div class="menu-item">File</div>
+            <div class="menu-item">Edit</div>
+            <div class="menu-item">View</div>
+            <div class="menu-item">Insert</div>
+            <div class="menu-item">Format</div>
+            <div class="menu-item">Tools</div>
+            <div class="menu-item">Help</div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div class="toolbar-section">
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" title="Undo"><i class="material-icons">undo</i></button>
+                    <button class="toolbar-btn" title="Redo"><i class="material-icons">redo</i></button>
+                    <button class="toolbar-btn" title="Print"><i class="material-icons">print</i></button>
+                    <button class="toolbar-btn" title="Paint format"><i class="material-icons">format_paint</i></button>
+                </div>
+
+                <div class="toolbar-group">
+                    <select class="font-select">
+                        <option>Arial</option>
+                        <option>Times New Roman</option>
+                        <option>Courier New</option>
+                    </select>
+                    <select class="font-size-select">
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option selected>11</option>
+                        <option>12</option>
+                        <option>14</option>
+                        <option>16</option>
+                        <option>18</option>
+                        <option>24</option>
+                        <option>36</option>
+                    </select>
+                </div>
+
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" title="Bold"><i class="material-icons">format_bold</i></button>
+                    <button class="toolbar-btn" title="Italic"><i class="material-icons">format_italic</i></button>
+                    <button class="toolbar-btn" title="Strikethrough"><i class="material-icons">strikethrough_s</i></button>
+                    <input type="color" class="color-picker" title="Text color">
+                    <input type="color" class="color-picker" title="Fill color">
+                </div>
+
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" title="Align left"><i class="material-icons">format_align_left</i></button>
+                    <button class="toolbar-btn" title="Align center"><i class="material-icons">format_align_center</i></button>
+                    <button class="toolbar-btn" title="Align right"><i class="material-icons">format_align_right</i></button>
+                </div>
+
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" title="Merge cells"><i class="material-icons">table_chart</i></button>
+                    <button class="toolbar-btn" title="Currency"><i class="material-icons">attach_money</i></button>
+                    <button class="toolbar-btn" title="Percent"><i class="material-icons">percent</i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formula Bar -->
+        <div class="formula-bar">
+            <div class="formula-fx">fx</div>
+            <select id="function-select" class="function-select">
+                <option value="">Select function...</option>
+            </select>
+            <div class="selected-cell"></div>
+            <input type="text" id="formula-input" placeholder="Enter formula">
+        </div>
+
+        <!-- Spreadsheet Container -->
+        <div class="spreadsheet-container">
+            <div id="spreadsheet"></div>
+        </div>
+
+        <!-- Sheet Tabs -->
+        <div class="sheet-tabs">
+            <div class="sheet-tab active">Sheet1</div>
+            <div class="sheet-tab">Sheet2</div>
+            <div class="sheet-tab">Sheet3</div>
+            <button class="add-sheet-btn"><i class="material-icons">add</i></button>
+        </div>
+    </div>
+
+    <script src="js/Formula.js"></script>
+    <script src="js/Spreadsheet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const spreadsheet = new Spreadsheet('spreadsheet');
+        });
+    </script>
+</body>
+</html>
