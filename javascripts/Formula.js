@@ -22,7 +22,16 @@ class Formula {
             const mean = args.reduce((a, b) => a + parseFloat(b), 0) / args.length;
             return args.reduce((a, b) => a + Math.pow(parseFloat(b) - mean, 2), 0) / (args.length - 1);
         },
-        'IF': (args) => args[0] ? args[1] : args[2] // Conditional: if condition, then value1, else value2
+        'IF': (args) => args[0] ? args[1] : args[2], // Conditional: if condition, then value1, else value2
+        
+         // Data quality functions
+         'TRIM': (args) => args.map(a => a.trim()),
+         'UPPER': (args) => args.map(a => a.toUpperCase()),
+         'LOWER': (args) => args.map(a => a.toLowerCase()),
+         'REMOVE_DUPLICATES': (args) => [...new Set(args)], // Remove duplicates in the array
+         'FIND_AND_REPLACE': (args, find, replace) => args.map(a => a.replace(new RegExp(find, 'g'), replace)),
+     
+    
     };
 
     static evaluateFormula(formula, getCellValue) {
