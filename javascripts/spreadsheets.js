@@ -14,8 +14,41 @@ class Spreadsheet {
         this.initFormulaBar();
         this.initFunctionDropdown();
         this.initRangeSelection(); // <-- New: initialize range dragging for formulas
+        this.initDataQualityDropdown(); // New: data quality function dropdown
         this.selectCellAt(0, 0); // Select first cell by default
     }
+
+    initDataQualityDropdown() {
+        const dataQualitySelect = document.getElementById('data-quality-select');
+        
+        // Add data quality functions to dropdown
+        const functions = ['TRIM', 'UPPER', 'LOWER', 'REMOVE_DUPLICATES', 'FIND_AND_REPLACE'];
+        functions.forEach(func => {
+            const option = document.createElement('option');
+            option.value = func;
+            option.textContent = func;
+            dataQualitySelect.appendChild(option);
+        });
+
+        // Handle function selection for data quality functions
+        dataQualitySelect.addEventListener('change', () => {
+            if (this.selectedCell && dataQualitySelect.value) {
+                const formulaInput = document.getElementById('formula-input');
+                const selectedFunction = dataQualitySelect.value;
+                
+                if (selectedFunction === 'FIND_AND_REPLACE') {
+                    const find = prompt('Enter the text to find:');
+                    const replace = prompt('Enter the text to replace with:');
+                    formulaInput.value = `=FIND_AND_REPLACE(${selectedFunction})(${find}, ${replace})`;
+                } else {
+                    formulaInput.value = `=${selectedFunction}()`;
+                }
+                
+                formulaInput.focus();
+            }
+        });
+    }
+        
 
     createGrid() {
         const scrollContainer = document.createElement('div');
